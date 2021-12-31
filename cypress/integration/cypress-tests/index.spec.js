@@ -34,6 +34,22 @@ context("Main", () => {
       cy.get("select").eq(2).select(1)
       cy.get("table").should("exist")
       cy.get("table").should("be.visible")
+      cy.get("thead").should("be.visible")
+      cy.get("tbody").should("be.visible")
+   })
+
+   it("removes table after selecting different route", () => {
+      cy.get("table").should("not.exist")
+      cy.get("select").select(1)
+      cy.get("table").should("not.exist")
+      cy.get("select").eq(1).select(1)
+      cy.get("table").should("not.exist")
+      cy.get("select").eq(2).select(1)
+      cy.get("table").should("exist")
+      cy.get("table").should("be.visible")
+      cy.get("select").eq(0).select(2)
+      cy.get("table").should("not.exist")
+      cy.get("select").eq(2).should("not.exist")
    })
 
 })

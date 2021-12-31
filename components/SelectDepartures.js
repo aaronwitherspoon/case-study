@@ -59,10 +59,18 @@ function SelectDepartures() {
 
    const handleRouteSelect = (e) => {
       setRouteId(e.target.selectedOptions[0].value)
+      setDirections([])
+      setDirectionId("")
+      setStops([])
+      setStopId("")
+      setDepartures({})
    }
 
    const handleDirectionSelect = (e) => {
       setDirectionId(e.target.selectedOptions[0].value)
+      setStops([])
+      setStopId("")
+      setDepartures({})
    }
 
    const handleStopSelect = (e) => {
@@ -73,7 +81,7 @@ function SelectDepartures() {
       <div>
 
          <div className='flex items-center justify-center'>
-            <select className="select" onChange={handleRouteSelect}>
+            <select className="select" onChange={handleRouteSelect} value={routeId}>
                <option value="">Select Route</option>
                {routes && routes.map(route => (
                   <option key={route.route_id} value={route.route_id}>{route.route_label}</option>
@@ -84,7 +92,7 @@ function SelectDepartures() {
          
          {routeId && directions &&
          <div className='flex items-center justify-center'>
-            <select className='select' onChange={handleDirectionSelect}>
+            <select className='select' onChange={handleDirectionSelect} value={directionId}>
                <option value="">Select Direction</option>
                {directions.map(dir => (
                   <option key={dir.direction_id} value={dir.direction_id}>{dir.direction_name}</option>
@@ -96,7 +104,7 @@ function SelectDepartures() {
          
          {routeId && directionId &&
          <div className='flex items-center justify-center'>
-            <select className='select' onChange={handleStopSelect}>
+            <select className='select' onChange={handleStopSelect} value={stopId}>
                <option value="">Select Stop</option>
                {stops.map(stop => (
                   <option key={stop.place_code} value={stop.place_code}>{stop.description}</option>
