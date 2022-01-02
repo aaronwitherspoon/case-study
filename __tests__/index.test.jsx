@@ -40,8 +40,8 @@ describe("Tests", () => {
    it("renders table info from props with departures", () => {
       const departures = {
          "departures": [
-            {"actual": true, "departure_text": "5 Min", "route_short_name": "Test route", "description": "test destination"},
-            {"actual": false, "departure_text": "12:34", "route_short_name": "Another route name", "description": "Another destination name"},
+            {"actual": true, "departure_text": "5 Min", "route_short_name": "Test route", "description": "test destination", "trip_id": "1"},
+            {"actual": false, "departure_text": "12:34", "route_short_name": "Another route name", "description": "Another destination name", "trip_id": "2"},
          ], 
          "stops": [{"description": "test data", "stop_id": 12345}]
       }
