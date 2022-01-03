@@ -184,7 +184,7 @@ function SelectDepartures() {
             {!selectedByRoute && 
             <div className='flex items-center justify-center'>
                <form onSubmit={handleSubmit} className='relative'>
-                  <input type="text" onChange={handleInputChange} value={enteredStopId} className='select' placeholder='Enter stop #' />
+                  <input type="text" onChange={handleInputChange} value={enteredStopId} className='select w-[20rem]' placeholder='Enter stop #' />
                   <button type="submit" className='absolute top-2 right-2'>
                      <SearchIcon className='text-gray-400 h-8 w-8' />
                   </button>

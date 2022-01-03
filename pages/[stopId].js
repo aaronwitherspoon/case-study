@@ -7,7 +7,13 @@ import DepartureTable from '../components/DepartureTable'
 export async function getServerSideProps(context) {
    
    const response = await fetch(`https://svc.metrotransit.org/nextripv2/${context.params.stopId}`)
-   const data = await response.json()
+   const data = await response.json().catch(error => {})
+
+   if (!data) {
+      return {
+         notFound: true
+      }
+   }
 
    return {
       props: {
@@ -63,7 +69,7 @@ function StopId(props) {
          <DepartureTable props={departures} />
 
          <div className='flex text-center justify-center mb-10'>
-            <Link href={'/'}>Home</Link>
+            <Link href={'/'}><a>Home</a></Link>
          </div>
 
       </div>
