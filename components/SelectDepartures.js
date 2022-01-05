@@ -64,20 +64,21 @@ function SelectDepartures() {
        })
    }
  
-    useEffect(() => {
-      if (!stopId) {
-         setDepartures({})
-      }
-      if (routeId && directionId && stopId) {
-        getDepartures()
- 
-        const interval = setInterval(() => {
-          getDepartures()
-        }, 30000)
- 
-        return () => clearInterval(interval)
-      }
-    }, [stopId])
+   // refetch departure data every 30 sec if already have route, direction, and stop selected
+   useEffect(() => {
+   if (!stopId) {
+      setDepartures({})
+   }
+   if (routeId && directionId && stopId) {
+      getDepartures()
+
+      const interval = setInterval(() => {
+         getDepartures()
+      }, 30000)
+
+      return () => clearInterval(interval)
+   }
+   }, [stopId])
 
    const handleRouteSelect = (e) => {
       setRouteId(e.target.selectedOptions[0].value)
@@ -103,6 +104,7 @@ function SelectDepartures() {
       setEnteredStopId(e.target.value)
    }
 
+   // route to pages/[stopId].js on stop # submit
    const handleSubmit = (e) => {
       e.preventDefault()
       if (enteredStopId) {
@@ -118,6 +120,7 @@ function SelectDepartures() {
          </h1>
 
 
+         {/* if api error, show error box instead of route selects */}
          {isError ? (
 
          <div className='bg-red-200 text-red-700 border border-red-700 rounded-md w-[28rem] mx-auto'>
@@ -131,6 +134,7 @@ function SelectDepartures() {
          
          <div>
 
+            {/* toggle between route select and stop # entry */}
             <div>
                <ul className="flex items-center justify-center mb-10">
                      <li onClick={() => setSelectedByRoute(true)} className="mr-3">
@@ -143,6 +147,7 @@ function SelectDepartures() {
             </div>
 
 
+            {/* select route */}
             {selectedByRoute && 
             <div>
                <div className='flex items-center justify-center'>
@@ -154,7 +159,7 @@ function SelectDepartures() {
                   </select>
                </div>
                
-               
+               {/* select direction */}
                {routeId && directions &&
                <div className='flex items-center justify-center'>
                   <select className='select' onChange={handleDirectionSelect} value={directionId}>
@@ -166,7 +171,7 @@ function SelectDepartures() {
                </div>
                }
       
-               
+               {/* select stop */}
                {routeId && directionId &&
                <div className='flex items-center justify-center'>
                   <select className='select' onChange={handleStopSelect} value={stopId}>
@@ -180,7 +185,7 @@ function SelectDepartures() {
             </div>
             }
 
-
+            {/* input stop # */}
             {!selectedByRoute && 
             <div className='flex items-center justify-center'>
                <form onSubmit={handleSubmit} className='relative'>
@@ -192,7 +197,7 @@ function SelectDepartures() {
             </div>
             }
 
-
+            {/* show departure table */}
             {stopId && departures?.departures &&
             <DepartureTable props={ departures } />
             }

@@ -12,7 +12,6 @@ export default function Home() {
 
       <main className="">
         <div className=''>
-
           <SelectDepartures />
         </div>
       </main>

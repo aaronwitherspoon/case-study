@@ -4,8 +4,10 @@ import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import DepartureTable from '../components/DepartureTable'
 
+
 export async function getServerSideProps(context) {
    
+   // fetch departure data and send as props, if error route to 404
    const response = await fetch(`https://svc.metrotransit.org/nextripv2/${context.params.stopId}`)
    const data = await response.json().catch(error => {})
 
@@ -41,15 +43,16 @@ function StopId(props) {
        .then(res => {
          setDepartures(res.data)
        }).catch(error => {
-         if (error.response.data.detail === "Invalid Stop ID" || error.response.data.status === 400) {
+         if (error?.response?.data?.detail === "Invalid Stop ID" || error?.response?.data?.status === 400) {
             setDepartures({ "stops": [{"description": `Invalid Stop #`, "stop_id": `${stopId}`}], "departures": []})
          } else {
             setDepartures({ "stops": [{"description": "Something went wrong. Try again later"}], "departures": []})
          }
-         console.log("dir error: ", error.response.data)
+         console.log("dep error: ", error.response.data)
        })
    }
  
+   // refetch departure data every 30 sec
    useEffect(() => {
       if (stopId) {
          getDepartures()

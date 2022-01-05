@@ -19,6 +19,7 @@ yarn dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 
+
 ## Testing
 
 Run Jest RTL tests:
@@ -39,3 +40,9 @@ npm run cypress
 View a deployed version here:
 
 [https://case-study-aaronwitherspoon.vercel.app/](https://case-study-aaronwitherspoon.vercel.app/)
+
+
+
+## Assumptions Made
+
+- Make it look and act similar to [Metro Transit](https://www.metrotransit.org/nextrip/)

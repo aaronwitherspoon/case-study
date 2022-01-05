@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-context("Main", () => {
+context("cypress tests", () => {
    const url = "http://localhost:3000/"
    beforeEach(() => {
       cy.visit(url)
@@ -76,7 +76,7 @@ context("Main", () => {
       cy.get("tbody").should("be.visible")
    })
 
-   it("returns to home page from stopIdpage when clicking home link", () => {
+   it("returns to home page from stopId page when clicking home link", () => {
       const stopId = "51405"
       cy.get("button").eq(1).click()
       cy.get("input").type(stopId)

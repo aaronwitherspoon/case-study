@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+// Generic 404 page for any route that doesn't exist
+
 export default function Custom404() {
    return (
       <div className="my-10">

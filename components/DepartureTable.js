@@ -1,7 +1,10 @@
 import { BanIcon, WifiIcon } from "@heroicons/react/solid"
 
+// displays table of departure data 
+
 function DepartureTable({props}) {
    //console.log(props);
+
    return (
       <div className='flex items-cent justify-center my-10'>
          <table className='sm:min-w-[80%] lg:min-w-[70%] xl:min-w-[50%] text-gray-600 text-xl bg-gray-100'>
@@ -17,7 +20,9 @@ function DepartureTable({props}) {
                </tr>
             </thead>
             <tbody className="">
-            {props?.departures?.length ? props?.departures?.map((stop, idx) => (
+            {/* display departures if they exist, else display no departures message */}
+            {props?.departures?.length ? 
+               props?.departures?.map((stop, idx) => (
                <tr key={stop.trip_id} className="border-b border-gray-400">
                   <td className="px-4 py-4 whitespace-nowrap font-semibold" data-testid={`table-route-${idx}`}>
                      {stop.route_short_name}
